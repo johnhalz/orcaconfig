@@ -14,13 +14,12 @@ PROCESS_PATH="$LOCAL_BASE_PATH/process"
 # Create directories if they do not exist
 mkdir -p "$FILAMENT_PATH" "$MACHINE_PATH" "$PROCESS_PATH"
 
-# Download files from GitHub and save them to the local paths
+# Function to download files from GitHub and save them to the local paths
 download_files() {
     local folder=$1
     local dest_path=$2
-    curl -s "https://api.github.com/repos/$GITHUB_USERNAME/$GITHUB_REPO/contents/$folder?ref=$GITHUB_BRANCH" |
-    jq -r '.[] | select(.type == "file") | .download_url' |
-    while read -r url; do
+    urls=$(curl -s "https://api.github.com/repos/$GITHUB_USERNAME/$GITHUB_REPO/contents/$folder?ref=$GITHUB_BRANCH" | grep -oP '"download_url": "\K(.*?)(?=")')
+    for url in $urls; do
         file_name=$(basename "$url")
         curl -s "$url" -o "$dest_path/$file_name"
     done
