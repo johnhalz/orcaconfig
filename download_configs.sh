@@ -18,8 +18,9 @@ mkdir -p "$FILAMENT_PATH" "$MACHINE_PATH" "$PROCESS_PATH"
 download_files() {
     local folder=$1
     local dest_path=$2
-    urls=$(curl -s "https://api.github.com/repos/$GITHUB_USERNAME/$GITHUB_REPO/contents/$folder?ref=$GITHUB_BRANCH" | grep -oP '"download_url": "\K(.*?)(?=")')
-    for url in $urls; do
+    curl -s "https://api.github.com/repos/$GITHUB_USERNAME/$GITHUB_REPO/contents/$folder?ref=$GITHUB_BRANCH" | \
+    awk -F'"' '/"download_url":/ {print $4}' | \
+    while read -r url; do
         file_name=$(basename "$url")
         curl -s "$url" -o "$dest_path/$file_name"
     done
