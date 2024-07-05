@@ -23,6 +23,7 @@ download_files() {
     while read -r url; do
         file_name=$(basename "$url")
         curl -s "$url" -o "$dest_path/$file_name"
+        mv "$dest_path/$file_name" "$dest_path/$(echo $file_name | sed 's/%20/ /g')"
     done
 }
 
