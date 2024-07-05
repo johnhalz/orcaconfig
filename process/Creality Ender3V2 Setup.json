@@ -1,0 +1,10 @@
+{
+    "brim_type": "no_brim",
+    "from": "User",
+    "inherits": "0.20mm Standard @Creality Ender3V2",
+    "is_custom_defined": "0",
+    "name": "Creality Ender3V2 Setup",
+    "print_sequence": "by object",
+    "print_settings_id": "Creality Ender3V2 Setup",
+    "version": "2.1.1.0"
+}

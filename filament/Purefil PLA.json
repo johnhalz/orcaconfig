@@ -1,0 +1,25 @@
+{
+    "complete_print_exhaust_fan_speed": [
+        "50"
+    ],
+    "during_print_exhaust_fan_speed": [
+        "50"
+    ],
+    "filament_cost": [
+        "26"
+    ],
+    "filament_settings_id": [
+        "Purefil PLA"
+    ],
+    "from": "User",
+    "hot_plate_temp": [
+        "65"
+    ],
+    "hot_plate_temp_initial_layer": [
+        "68"
+    ],
+    "inherits": "Creality Generic PLA",
+    "is_custom_defined": "0",
+    "name": "Purefil PLA",
+    "version": "2.1.1.0"
+}
